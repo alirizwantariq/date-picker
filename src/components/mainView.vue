@@ -1,23 +1,49 @@
 <template>
-    <div>
-        <DatePicker :start-date="startDate" :end-date="endDate" />
-        <p>Start Date: {{ startDate }}</p>
-        <p>End Date: {{ endDate }}</p>
+    <div class="w-50">
+        <h1 v-if="text === 'ocr'">
+            Step average by {{ text }}
+        </h1>
+        <h1 v-if="text === 'verification'">
+            step average by {{ text }}
+        </h1>
+        <v-btn-toggle v-model="text" rounded="0" color="deep-purple-accent-3" group>
+            <v-btn value='ocr'>
+                OCR
+            </v-btn>
+
+            <v-btn value='verification'>
+                Verification
+            </v-btn>
+        </v-btn-toggle>
+        <div v-if="text === 'ocr'">
+            {{ stepPercentageOCR }}%
+            <v-progress-linear color="blue-lighten-3" v-model="stepPercentageOCR"></v-progress-linear>
+        </div>
+        <div v-if="text === 'verification'">
+            {{ stepPercentageVer }}%
+            <v-progress-linear color="blue-lighten-3" v-model="stepPercentageVer"></v-progress-linear>
+        </div>
     </div>
 </template>
 
 <script>
-import DatePicker from './datePicker.vue';
+
 
 export default {
     components: {
-        DatePicker,
     },
     data() {
         return {
-            startDate: new Date(),
-            endDate: new Date(),
+            text: 'ocr',
+            stepPercentageOCR: '20',
+            stepPercentageVer: '50',
         };
     },
+    watch: {
+        text: function () {
+            console.log(this.text);
+            // this.$refs.h1.textContent = `DEO by ${this.text}`;
+        },
+    }
 };
 </script>

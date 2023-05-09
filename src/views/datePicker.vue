@@ -1,10 +1,11 @@
 <template>
     <div>
         <div>
+            <h1 class="text-success mb-2 text-center">DATE PICKER</h1>
             <VueDatePicker v-model="date" range multi-calendars multi-calendars-solo :enable-time-picker="false"
                 :clearable="false">
                 <template #left-sidebar>
-                    <div style="display:grid; height:277px;">
+                    <div style="display:grid; color:black; height:277px;">
                         <button @click="setToday">Today</button>
                         <button @click="setYesterday">Yesterday</button>
                         <button @click="setLast15Days">Last 15 Days</button>
@@ -12,6 +13,14 @@
                     </div>
                 </template>
             </VueDatePicker>
+            <span class="mt-2 d-flex justify-space-between">
+                <p class="text-red">START DATE*:</p>
+                <p class="text-red">END DATE*:</p>
+            </span>
+            <span class="mt-2 d-flex justify-space-between">
+                <p class="text-warning">{{ startDate }}</p>
+                <p class="text-warning">{{ endDate }}</p>
+            </span>
         </div>
     </div>
 </template>
